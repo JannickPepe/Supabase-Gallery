@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
@@ -8,15 +9,8 @@ import { supabaseBrowser } from "@/lib/supabase/browser";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 import { protectedPaths } from "@/lib/constant";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu";
 
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 export default function Profile() {
 	const { isFetching, data } = useUser();
@@ -70,7 +64,12 @@ export default function Profile() {
 						<DropdownMenuItem onClick={handleLogout}>
 							Logout
 						</DropdownMenuItem>
-						<DropdownMenuItem>Upload</DropdownMenuItem>
+						<DropdownMenuItem onClick={() => { 
+							document.getElementById('upload-trigger')?.click(); 
+							}}
+						>
+							Upload
+						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
 			)}
