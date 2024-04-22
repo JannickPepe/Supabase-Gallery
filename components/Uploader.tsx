@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog";
 import Uppy from '@uppy/core';
 import { Dashboard } from '@uppy/react';
@@ -10,22 +10,28 @@ import { Button } from './ui/button';
 import Tus from '@uppy/tus';
 import useUser from '@/app/hook/useUser';
 import { supabaseBrowser } from '@/lib/supabase/browser';
+import { Input } from './ui/input';
+import { toast } from 'sonner';
 
 
 export default function Uploader() {
 
+    // have it global so every function can use it
+    const supabase = supabaseBrowser();
+
+    //
+    const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>
+    
+    // create a hook
+    const { data: user } = useUser();
+
     // for the request policy so we need to make a Header Request Valid
     const onBeforeRequest = async (req: any) => {
-        const supabase = supabaseBrowser();
         const { data } = await supabase.auth.getSession();
     
         // for every section session we go through this header requirement
         req.setHeader("Authorization", `Bearer ${data.session?.access_token}`);
     };
-    
-
-    // create a hook
-    const { data: user } = useUser();
 
     // make uppy to only upload one image at the time and max size 5mb
     const [uppy] = useState(() => new Uppy(
@@ -58,6 +64,16 @@ export default function Uploader() {
         };
     });
 
+    // 
+    uppy.on("upload-success", () => {
+        uppy.cancelAll();
+        if(inputRef.current) {
+            inputRef.current.value = "";
+        }
+
+        document.getElementById("trigger-close")?.click();
+    });
+
     //
     const handleUpload = () => {
 
@@ -68,7 +84,18 @@ export default function Uploader() {
             objectName: user?.id + "/" + randomUUID + "/" + uppy.getFiles()[0].name,
         });
 
-        uppy.upload();
+        uppy.upload().then(async () => {
+            const description = inputRef.current.value
+
+            if(description.trim()) {
+                const { error } = await supabase.from("posts").update({"description": description}).eq("id", randomUUID);
+
+                if(error) {
+                    toast.error("Fail to update descriptions!!");
+                }
+            }
+
+        });
     };
 
 
@@ -87,6 +114,9 @@ export default function Uploader() {
                     </DialogHeader>
                     <div className='space-y-5'>
                         <Dashboard uppy={uppy} hideUploadButton/>
+
+                        <Input placeholder='image description' ref={inputRef} />
+
                         <Button className='w-full' onClick={handleUpload}>Upload</Button>
                     </div>
                 </DialogContent>
