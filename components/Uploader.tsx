@@ -12,6 +12,7 @@ import useUser from '@/app/hook/useUser';
 import { supabaseBrowser } from '@/lib/supabase/browser';
 import { Input } from './ui/input';
 import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 
 export default function Uploader() {
@@ -24,6 +25,9 @@ export default function Uploader() {
     
     // create a hook
     const { data: user } = useUser();
+
+    // 
+    const router = useRouter();
 
     // for the request policy so we need to make a Header Request Valid
     const onBeforeRequest = async (req: any) => {
@@ -72,30 +76,37 @@ export default function Uploader() {
         }
 
         document.getElementById("trigger-close")?.click();
+        router.refresh();
     });
 
     //
     const handleUpload = () => {
 
-        const randomUUID = crypto.randomUUID();
+        if(uppy.getFiles().length !== 0) {
 
-        // here we only accept one file as we adjusted in the supabase bucket
-        uppy.setFileMeta(uppy.getFiles()[0].id, {
-            objectName: user?.id + "/" + randomUUID + "/" + uppy.getFiles()[0].name,
-        });
+            const randomUUID = crypto.randomUUID();
 
-        uppy.upload().then(async () => {
-            const description = inputRef.current.value
+            // here we only accept one file as we adjusted in the supabase bucket
+            uppy.setFileMeta(uppy.getFiles()[0].id, {
+                objectName: user?.id + "/" + randomUUID + "/" + uppy.getFiles()[0].name,
+            });
 
-            if(description.trim()) {
-                const { error } = await supabase.from("posts").update({"description": description}).eq("id", randomUUID);
+            uppy.upload().then(async () => {
+                const description = inputRef.current.value
 
-                if(error) {
-                    toast.error("Fail to update descriptions!!");
+                if(description.trim()) {
+                    const { error } = await supabase.from("posts").update({"description": description}).eq("id", randomUUID);
+
+                    if(error) {
+                        toast.error("Fail to update descriptions!!");
+                    }
                 }
-            }
 
-        });
+            });
+
+        } else {
+            toast.warning("Please adding an image");
+        }
     };
 
 
