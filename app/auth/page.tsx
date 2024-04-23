@@ -80,17 +80,16 @@ export default function Page() {
 				<section className="mt-6 max-w-[1000px] mx-auto">
 					<div className="grid grid-cols-2 gap-4">
 						<div className="bg-slate-800 rounded-md border border-gray-500">
-							<div>
-							<button className="animate-wave mt-2 sm:px-2 lg:px-6 text-2xl">👋</button>
+							<div className="px-2 md:px-0">
+								<button className="animate-wave mt-2 sm:px-2 lg:px-6 sm:text-sm lg:text-2xl">👋</button>
 							</div>
-							<div className="text-3xl mt-4 sm:px-2 lg:px-6">
+							<div className="lg:text-3xl mt-4 sm:px-2 lg:px-6 text-center lg:text-left">
 								Hi, Im Jannick. I build cool projects like this one.
 							</div>
-							<div className="text-lg mt-6 sm:px-2 lg:px-6 flex items-center hover:cursor-pointer text-indigo-400 hover:text-white">
+							<div className="mt-6 px-2 lg:px-6 flex items-center hover:cursor-pointer text-indigo-400 hover:text-white">
 								<div className="flex items-center hover:scale-110 transition-transform">
-								Contact me <MdOutlineKeyboardArrowRight size={30} />
+									<button className="text-sm lg:text-lg">Contact me</button> <MdOutlineKeyboardArrowRight size={30} />
 								</div>
-								
 							</div>
 						</div>
 
@@ -122,7 +121,7 @@ export default function Page() {
 
 					<div className="grid grid-cols-3 mt-4 gap-4">
 						<div className="col-span-1 bg-slate-500 rounded-md border border-gray-800">
-							<div className="p-4 mt-3">
+							<div className="p-2 lg:p-4 mt-10 md:mt-3">
 								<FaLocationDot className="mx-auto" size={20} />
 								<p className="text-center mt-1">Image Uploader</p>
 							</div>
@@ -131,9 +130,9 @@ export default function Page() {
 							<div className="text-lg px-4 py-1 mt-2">
 								Join my mailing list
 							</div>
-							<div className="flex px-4 items-center gap-4 mb-4 mt-2">
+							<div className="md:flex px-4 items-center gap-4 mb-4 mt-2">
 								<Input className="border border-indigo-500"/>
-								<Button className="bg-white">
+								<Button className="bg-white mt-2 md:mt-0">
 									<IoMail className="mr-1" size={20} /> Join The List
 								</Button>
 							</div>
