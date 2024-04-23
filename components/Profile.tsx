@@ -2,7 +2,6 @@
 
 import React, { Suspense } from "react";
 import { Button } from "./ui/button";
-import Link from "next/link";
 import useUser from "@/app/hook/useUser";
 import Image from "next/image";
 import { supabaseBrowser } from "@/lib/supabase/browser";

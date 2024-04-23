@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Uploader from "@/components/Uploader";
 import { supabaseServer } from "@/lib/supabase/server";
 import Image from "next/image";
@@ -22,7 +22,7 @@ export default async function page() {
 	});
 
 	return (
-		<div>
+		<Suspense>
 			<div>
 				<h1 className="text-3xl text-center mb-10">Image Uploader</h1>
 			</div>
@@ -39,6 +39,6 @@ export default async function page() {
 			</div>
 
 			<Uploader />
-		</div>
+		</Suspense>
 	);
 }
