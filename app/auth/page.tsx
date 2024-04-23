@@ -15,6 +15,7 @@ import { IoMail } from "react-icons/io5";
 
 
 export default function Page() {
+
 	const params = useSearchParams();
 
 	const next = params.get("next") || "";
@@ -48,20 +49,26 @@ export default function Page() {
 						Register / Sign in Today 👇
 					</p>
 					<div className="flex flex-col gap-5">
-						<Button
-							className=" w-full flex items-center gap-2 "
-							variant="outline"
-							onClick={() => handleLoginWithOAuth("github")}
-						>
-							<FaGithub /> Github
-						</Button>
-						<Button
-							className=" w-full flex items-center gap-2 "
-							variant="outline"
-							onClick={() => handleLoginWithOAuth("google")}
-						>
-							<FcGoogle /> Google
-						</Button>
+						<Suspense>
+							<Button
+								className=" w-full flex items-center gap-2 "
+								variant="outline"
+								onClick={() => handleLoginWithOAuth("github")}
+							>
+								<FaGithub /> Github
+							</Button>
+						</Suspense>
+						
+						<Suspense>
+							<Button
+								className=" w-full flex items-center gap-2 "
+								variant="outline"
+								onClick={() => handleLoginWithOAuth("google")}
+							>
+								<FcGoogle /> Google
+							</Button>
+						</Suspense>
+						
 					</div>
 					<div className="glowBox -z-10"></div>
 				</div>
