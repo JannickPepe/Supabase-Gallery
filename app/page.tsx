@@ -22,7 +22,7 @@ export default async function page() {
 	});
 
 	return (
-		<Suspense>
+		<div>
 			<div>
 				<h1 className="text-3xl text-center mb-10">Image Uploader</h1>
 			</div>
@@ -39,6 +39,6 @@ export default async function page() {
 			</div>
 
 			<Uploader />
-		</Suspense>
+		</div>
 	);
 }

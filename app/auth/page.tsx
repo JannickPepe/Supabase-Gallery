@@ -48,9 +48,8 @@ export default function Page() {
 					<p className="text-sm text-gray-300">
 						Register / Sign in Today 👇
 					</p>
-					<Suspense>
+				
 						<div className="flex flex-col gap-5">
-							<Suspense>
 								<Button
 									className=" w-full flex items-center gap-2 "
 									variant="outline"
@@ -58,9 +57,7 @@ export default function Page() {
 								>
 									<FaGithub /> Github
 								</Button>
-							</Suspense>
-							
-							<Suspense>
+
 								<Button
 									className=" w-full flex items-center gap-2 "
 									variant="outline"
@@ -68,11 +65,9 @@ export default function Page() {
 								>
 									<FcGoogle /> Google
 								</Button>
-							</Suspense>
+						
 						</div>
-					</Suspense>
 					
-
 					<div className="glowBox -z-10"></div>
 
 				</div>
