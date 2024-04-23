@@ -7,14 +7,21 @@ import useUser from "@/app/hook/useUser";
 import Image from "next/image";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import { useQueryClient } from "@tanstack/react-query";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { protectedPaths } from "@/lib/constant";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu";
 
 
 export default function Profile() {
+
+	const params = useSearchParams();
+	
+	const next = params.get("next") || "";
+
 	const { isFetching, data } = useUser();
+
 	const queryClient = useQueryClient();
+
 	const router = useRouter();
 
 	const pathname = usePathname();
@@ -22,6 +29,17 @@ export default function Profile() {
 	if (isFetching) {
 		return <></>;
 	}
+
+	
+	const handleLoginWithOAuth = (provider: "github" | "google") => {
+		const supabase = supabaseBrowser();
+		supabase.auth.signInWithOAuth({
+			provider,
+			options: {
+				redirectTo: location.origin + "/auth/callback?next=" + next,
+			},
+		});
+	};
 
 	const handleLogout = async () => {
 		const supabase = supabaseBrowser();
@@ -36,9 +54,9 @@ export default function Profile() {
 	return (
 		<div>
 			{!data?.id ? (
-				<Link href="/auth" className=" animate-fade">
-					<Button variant="outline">SignIn</Button>
-				</Link>
+				<div className=" animate-fade">
+					<Button variant="outline" onClick={() => handleLoginWithOAuth("github")}>Sign In</Button>
+				</div>
 			) : (
 				<DropdownMenu>
 					<DropdownMenuTrigger>
