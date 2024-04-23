@@ -1,7 +1,8 @@
 "use client";
+
+import React, { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { KeyRound } from "lucide-react";
-import React, { Suspense } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { supabaseBrowser } from "@/lib/supabase/browser";
@@ -31,7 +32,6 @@ export default function Page() {
 	};
 
 	return (
-
 		<Suspense>
 			<div className="space-y-3">
 				<h1 className="text-4xl text-center">Your own Storage with <span className="text-indigo-500">Image Uploader</span></h1>
@@ -48,29 +48,33 @@ export default function Page() {
 					<p className="text-sm text-gray-300">
 						Register / Sign in Today 👇
 					</p>
-					<div className="flex flex-col gap-5">
-						<Suspense>
-							<Button
-								className=" w-full flex items-center gap-2 "
-								variant="outline"
-								onClick={() => handleLoginWithOAuth("github")}
-							>
-								<FaGithub /> Github
-							</Button>
-						</Suspense>
-						
-						<Suspense>
-							<Button
-								className=" w-full flex items-center gap-2 "
-								variant="outline"
-								onClick={() => handleLoginWithOAuth("google")}
-							>
-								<FcGoogle /> Google
-							</Button>
-						</Suspense>
-						
-					</div>
+					<Suspense>
+						<div className="flex flex-col gap-5">
+							<Suspense>
+								<Button
+									className=" w-full flex items-center gap-2 "
+									variant="outline"
+									onClick={() => handleLoginWithOAuth("github")}
+								>
+									<FaGithub /> Github
+								</Button>
+							</Suspense>
+							
+							<Suspense>
+								<Button
+									className=" w-full flex items-center gap-2 "
+									variant="outline"
+									onClick={() => handleLoginWithOAuth("google")}
+								>
+									<FcGoogle /> Google
+								</Button>
+							</Suspense>
+						</div>
+					</Suspense>
+					
+
 					<div className="glowBox -z-10"></div>
+
 				</div>
 			</div>
 
