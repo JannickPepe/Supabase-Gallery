@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { KeyRound } from "lucide-react";
-import React from "react";
+import React, { Suspense } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { supabaseBrowser } from "@/lib/supabase/browser";
@@ -31,7 +31,7 @@ export default function Page() {
 
 	return (
 
-		<div>
+		<Suspense>
 			<div className="space-y-3">
 				<h1 className="text-4xl text-center">Your own Storage with <span className="text-indigo-500">Image Uploader</span></h1>
 				<h2 className="mx-auto text-2xl text-center max-w-[600px]">At <span className="text-indigo-500">Image Uploader</span> you can save all your favorites images or memes <span className="border-b-2 border-violet-600">without any limits</span></h2>
@@ -135,7 +135,7 @@ export default function Page() {
 					</div>
 				</section>
 			</div>
-		</div>
+		</Suspense>
 		
 	);
 }
