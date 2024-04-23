@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import useUser from "@/app/hook/useUser";
@@ -52,7 +52,7 @@ export default function Profile() {
 	};
 
 	return (
-		<div>
+		<Suspense>
 			{!data?.id ? (
 				<div className=" animate-fade">
 					<Button variant="outline" onClick={() => handleLoginWithOAuth("github")}>Sign In</Button>
@@ -91,6 +91,6 @@ export default function Profile() {
 					</DropdownMenuContent>
 				</DropdownMenu>
 			)}
-		</div>
+		</Suspense>
 	);
 }
