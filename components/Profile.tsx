@@ -35,7 +35,7 @@ export default function Profile() {
 		supabase.auth.signInWithOAuth({
 			provider,
 			options: {
-				redirectTo: location.origin + "/auth/callback?next=" + pathname,
+				redirectTo: location.origin + "/auth/callback?next=" + next,
 			},
 		});
 	};
@@ -46,7 +46,7 @@ export default function Profile() {
 		await supabase.auth.signOut();
 		router.refresh();
 		if (protectedPaths.includes(pathname)) {
-			router.replace("/auth?next=" + pathname);
+			router.replace("/auth?next=" + next);
 		}
 	};
 
