@@ -6,7 +6,7 @@ import { KeyRound } from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { supabaseBrowser } from "@/lib/supabase/browser";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { SlCloudUpload } from "react-icons/sl";
 import { FaImage, FaLocationDot, FaSquareGithub, FaSquareYoutube } from "react-icons/fa6";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
@@ -17,6 +17,8 @@ import { IoMail } from "react-icons/io5";
 
 export default function Page() {
 
+	const pathname = usePathname();
+
 	const params = useSearchParams();
 
 	const next = params.get("next") || "";
@@ -26,7 +28,7 @@ export default function Page() {
 		supabase.auth.signInWithOAuth({
 			provider,
 			options: {
-				redirectTo: location.origin + "/auth/callback?next=" + next,
+				redirectTo: location.origin + "/auth/callback?next=" + pathname,
 			},
 		});
 	};

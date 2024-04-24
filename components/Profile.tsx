@@ -35,7 +35,7 @@ export default function Profile() {
 		supabase.auth.signInWithOAuth({
 			provider,
 			options: {
-				redirectTo: location.origin + "/auth/callback?next=" + next,
+				redirectTo: location.origin + "/auth/callback?next=" + pathname,
 			},
 		});
 	};
