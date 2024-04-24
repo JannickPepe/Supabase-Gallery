@@ -10,7 +10,7 @@ import { Suspense } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://tmsblog.vercel.app/"),
+	metadataBase: new URL("https://supaimgupload.vercel.app/"),
 	title:{
 		template: "%s | Uploader",
 		default: "Image Uploader",
