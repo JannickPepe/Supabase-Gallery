@@ -92,7 +92,7 @@ export default function Uploader() {
             });
 
             uppy.upload().then(async () => {
-                const description = inputRef.current.value
+                const description = inputRef.current.value;
 
                 if(description.trim()) {
                     const { error } = await supabase.from("posts").update({"description": description}).eq("id", randomUUID);

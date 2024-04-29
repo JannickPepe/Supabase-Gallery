@@ -3,6 +3,9 @@ import Uploader from "@/components/Uploader";
 import { supabaseServer } from "@/lib/supabase/server";
 import Image from "next/image";
 import DeletePost from "@/components/DeletePost";
+import { MdDescription } from "react-icons/md";
+import { FaUpload } from "react-icons/fa6";
+import UploadDashboard from "@/components/UploadDashboard";
 
 
 export default async function page() {
@@ -20,20 +23,40 @@ export default async function page() {
 			...post,
 		}
 	});
+	
 
 	return (
 		<div>
-			<div>
-				<h1 className="text-3xl text-center mb-10">Image Uploader</h1>
+			<div className="flex items-center justify-center gap-3 mb-2">
+				<FaUpload className="h-4 w-4 lg:h-7 lg:w-7"/>
+				<h1 className="text-3xl">Image Uploader</h1>
 			</div>
-			<div className="grid grid-cols-3 gap-8">
+
+			<div className="flex justify-center mb-4">
+				<h3 className="text-slate-500 font-medium">You can upload <span className="text-indigo-500 font-semibold">1 image</span> at time</h3>
+			</div>
+
+			<UploadDashboard />
+
+			<div className="grid lg:grid-cols-3 gap-8">
 				{posts?.map((post) => {
-					return <div key={post.id} className="rounded-md w-full space-y-6 relative">
+					return <div key={post.id} className="rounded-md w-full space-y-3 relative">
+						<h1>@{post.profiles?.display_name}</h1>
+
 						<div className="w-full h-96 relative rounded-md border">
 							<Image src={imgUrlHost + post.image} alt={post.description || ""} fill className="rounded-md object-cover object-center" />
 						</div>
-						<h1>@{post.profiles?.display_name}</h1>
+
+						<span className="text-sm text-slate-500 font-medium">{new Date(post?.created_at || "").toDateString()}</span>
+
+						<div className="flex items-center gap-1">
+							<MdDescription className="hidden md:block" size={20}/>
+							<h2 className="lg:border-b border-indigo-500">{post.description}</h2>
+						</div>
+						
 						<DeletePost post_by={post.post_by} image={post.image}/>
+
+						<hr className="lg:hidden" />
 					</div>;
 				})}
 			</div>

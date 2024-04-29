@@ -31,7 +31,7 @@ export default function DeletePost({post_by, image,}: {post_by: string; image: s
 	}
 	if (user?.id === post_by) {
 		return (
-			<div className=" absolute top-0 right-5">
+			<div className="md:absolute top-10 right-5">
 				<Button onClick={handleDelete}>Delete</Button>
 			</div>
 		);
