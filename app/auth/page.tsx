@@ -35,12 +35,20 @@ export default function Page() {
 
 	return (
 		<Suspense>
+			<span className="flex items-center justify-center mt-8">
+				<div className="relative">
+					<span className="bg-indigo-500 py-1 px-2.5 rounded-lg">Beta</span>
+					<div className="absolute top-0 right-0 -mr-1 -mt-1 w-3 h-3 rounded-full bg-purple-300 animate-ping"></div>
+					<div className="absolute top-0 right-0 -mr-1 -mt-1 w-3 h-3 rounded-full bg-purple-300"></div>
+				</div>
+			</span>
+
 			<div className="space-y-3">
-				<h1 className="text-4xl text-center">Your own Storage with <span className="text-indigo-500">Image Uploader</span></h1>
+				<h1 className="text-4xl text-center  mt-[-30px]">Your own Storage with <span className="text-indigo-500">Image Uploader</span></h1>
 				<h2 className="mx-auto text-2xl text-center max-w-[600px]">At <span className="text-indigo-500">Image Uploader</span> you can save all your favorites images or memes <span className="border-b-2 border-violet-600">without any limits</span></h2>
 			</div>
 
-			<div className="flex items-center justify-center w-full lg:h-[42vh] xl:h-[48vh]">
+			<div className="flex items-center justify-center w-full lg:h-[38vh] xl:h-[40vh]">
 				<div className=" w-96 rounded-md border p-5 space-y-5 relative bg-slate-900">
 					<div className="flex items-center gap-2">
 						<KeyRound />

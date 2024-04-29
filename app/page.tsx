@@ -27,6 +27,14 @@ export default async function page() {
 
 	return (
 		<div>
+			<span className="flex items-center justify-center mb-2">
+				<div className="relative">
+					<span className="bg-indigo-500 py-1 px-2.5 rounded-lg">Beta</span>
+					<div className="absolute top-0 right-0 -mr-1 -mt-1 w-3 h-3 rounded-full bg-purple-300 animate-ping"></div>
+					<div className="absolute top-0 right-0 -mr-1 -mt-1 w-3 h-3 rounded-full bg-purple-300"></div>
+				</div>
+			</span>
+
 			<div className="flex items-center justify-center gap-3 mb-2">
 				<FaUpload className="h-4 w-4 lg:h-7 lg:w-7"/>
 				<h1 className="text-3xl">Image Uploader</h1>
