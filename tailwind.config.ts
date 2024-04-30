@@ -3,10 +3,10 @@ import type { Config } from "tailwindcss";
 const config = {
 	darkMode: ["class"],
 	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./pages/**/*.{ts,tsx,jsx}",
+		"./components/**/*.{ts,tsx,jsx}",
+		"./app/**/*.{ts,tsx,jsx}",
+		"./src/**/*.{ts,tsx,jsx}",
 	],
 	prefix: "",
 	theme: {
@@ -90,7 +90,7 @@ const config = {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
 				fade: "fade 1s linear forwards",
-				wave: 'wave 1.5s infinite'
+				wave: 'wave 10 1.5s'
 			},
 		},
 	},

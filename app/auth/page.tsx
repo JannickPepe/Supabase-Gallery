@@ -12,7 +12,10 @@ import { FaImage, FaLocationDot, FaSquareGithub, FaSquareYoutube } from "react-i
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { Input } from "@/components/ui/input";
 import { IoMail } from "react-icons/io5";
-
+import ShuffleHero from '../../components/ShuffleHero';
+import Image from "next/image";
+import DashboardImg from '../../public/dashboard.png';
+import UploaderImg from '../../public/uploader.png'
 
 
 export default function Page() {
@@ -37,7 +40,7 @@ export default function Page() {
 		<Suspense>
 			<span className="flex items-center justify-center mt-8">
 				<div className="relative">
-					<span className="bg-indigo-500 py-1 px-2.5 rounded-lg">Beta</span>
+					<span className="bg-indigo-500 py-1 px-2.5 rounded-lg text-sm">Beta</span>
 					<div className="absolute top-0 right-0 -mr-1 -mt-1 w-3 h-3 rounded-full bg-purple-300 animate-ping"></div>
 					<div className="absolute top-0 right-0 -mr-1 -mt-1 w-3 h-3 rounded-full bg-purple-300"></div>
 				</div>
@@ -48,7 +51,7 @@ export default function Page() {
 				<h2 className="mx-auto text-2xl text-center max-w-[600px]">At <span className="text-indigo-500">Image Uploader</span> you can save all your favorites images or memes <span className="border-b-2 border-violet-600">without any limits</span></h2>
 			</div>
 
-			<div className="flex items-center justify-center w-full lg:h-[38vh] xl:h-[40vh]">
+			<div className="flex items-center justify-center w-full lg:h-[38vh] xl:h-[44vh]">
 				<div className=" w-96 rounded-md border p-5 space-y-5 relative bg-slate-900">
 					<div className="flex items-center gap-2">
 						<KeyRound />
@@ -85,7 +88,7 @@ export default function Page() {
 
 			<div className="mt-20">
 				<p className="text-center text-sm text-gray-500">Take advantage of Image Uploader with:</p>
-				<h2 className="text-3xl text-center">Features</h2>
+				<h2 className="text-3xl text-center font-semibold">Features</h2>
 
 				<section className="mt-6 max-w-[1000px] mx-auto">
 					<div className="grid grid-cols-2 gap-4">
@@ -150,6 +153,20 @@ export default function Page() {
 					</div>
 				</section>
 			</div>
+
+			<div className="text-center">
+				<p className="text-sm text-gray-500 mt-32">How It Works</p>
+				<h2 className="text-3xl font-semibold mb-4">Overview Of Dashboard & Uploader</h2>
+				<div className="md:grid grid-cols-2 grid-rows-1 gap-4 max-w-[1068px] mx-auto space-y-4 md:space-y-0 mb-10">
+					<Image className="md:grid col-span-1 border border-indigo-500 md:h-[21rem] rounded-md" src={DashboardImg} alt="dashboard image" />
+					<Image className="md:grid col-span-1 border border-indigo-500 md:h-[21rem] rounded-md" src={UploaderImg} alt="uploader image" />
+				</div>
+			</div>
+
+			<div className="">
+				<ShuffleHero />
+			</div>
+
 		</Suspense>
 		
 	);
