@@ -6,7 +6,7 @@ import { KeyRound } from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { supabaseBrowser } from "@/lib/supabase/browser";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { SlCloudUpload } from "react-icons/sl";
 import { FaImage, FaLocationDot, FaSquareGithub, FaSquareYoutube } from "react-icons/fa6";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
@@ -20,8 +20,6 @@ import UploaderImg from '../../public/uploader.png'
 
 export default function Page() {
 
-	const pathname = usePathname();
-
 	const params = useSearchParams();
 
 	const next = params.get("next") || "";
@@ -31,7 +29,7 @@ export default function Page() {
 		supabase.auth.signInWithOAuth({
 			provider,
 			options: {
-				redirectTo: location.origin + "/auth/callback?next=" + pathname,
+				redirectTo: location.origin + "/auth/callback?next=" + next,
 			},
 		});
 	};
@@ -158,8 +156,8 @@ export default function Page() {
 				<p className="text-sm text-gray-500 mt-32">How It Works</p>
 				<h2 className="text-3xl font-semibold mb-4">Overview Of Dashboard & Uploader</h2>
 				<div className="md:grid grid-cols-2 grid-rows-1 gap-4 max-w-[1068px] mx-auto space-y-4 md:space-y-0 mb-10">
-					<Image className="md:grid col-span-1 border border-indigo-500 md:h-[21rem] rounded-md" src={DashboardImg} alt="dashboard image" />
-					<Image className="md:grid col-span-1 border border-indigo-500 md:h-[21rem] rounded-md" src={UploaderImg} alt="uploader image" />
+					<Image className="md:grid col-span-1 border border-indigo-500 md:h-[20rem] rounded-md hover:shadow-lg hover:shadow-white" src={DashboardImg} alt="dashboard image" />
+					<Image className="md:grid col-span-1 border border-indigo-500 md:h-[20rem] rounded-md hover:shadow-lg hover:shadow-white" src={UploaderImg} alt="uploader image" />
 				</div>
 			</div>
 

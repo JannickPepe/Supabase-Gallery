@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
@@ -8,7 +10,7 @@ const ShuffleHero = () => {
         <section className="w-full px-8 py-12 max-w-6xl mx-auto mt-20">
             <div className="text-center">
                 <span className="block text-sm text-gray-500">
-                    Stay Tuned With Memes
+                    Stay Tuned With The Memes
                 </span>
                 <h3 className="text-3xl font-semibold mb-4">
                     Our Latest Uploads!
